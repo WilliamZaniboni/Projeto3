@@ -176,6 +176,7 @@ public class EnvironmentController implements MouseListener, MouseMotionListener
                 
                 fightController.cycle_routine(); 
                 environment.getjLabel9().setText(""+fightController.getCycle()+"º");
+                environment.repaint();
                
                
             }

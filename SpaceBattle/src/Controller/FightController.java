@@ -25,6 +25,7 @@ import Model.*;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Random;
 
 public class FightController implements Observer {
     //"TIME" CONTROL ===================================================================================================
@@ -38,12 +39,13 @@ public class FightController implements Observer {
         private ArrayList <SpaceIcon> empire = new ArrayList();
         private Battlefield battlefield;
         private Player player;
-
+        private Random random;
 
     //CONSTRUCTOR ======================================================================================================
         public FightController(Battlefield battlefield, Player player) {
             this.battlefield = battlefield;
             this.player = player;
+            random = new Random();
         }
 
 
@@ -121,10 +123,12 @@ public class FightController implements Observer {
             }
 
             public boolean insertNewEmpireShip(int y){
-                if(battlefield.getMoveMatrix()[Constants.BATTLEFIELD_X_DIM][y] == 0 ){
+                if(battlefield.getMoveMatrix()[Constants.BATTLEFIELD_X_DIM-1][y] == 0 ){
                     empire.add(new EmpireShip(y));
                     empire_number ++;
-                    battlefield.setMoveMatrixField(Constants.BATTLEFIELD_X_DIM, y, 2);
+                    battlefield.setMoveMatrixField(Constants.BATTLEFIELD_X_DIM-1, y, 2);
+                    battlefield.setOccupiedMatrix(Constants.BATTLEFIELD_X_DIM-1,y,4);
+                    System.out.println("EmpireShip criada em: " + (Constants.BATTLEFIELD_X_DIM - 1) + ", " + y);
                     return true;
                 }
                 else{
@@ -200,10 +204,29 @@ public class FightController implements Observer {
                     }
             }
 
+            public int generateEmpireArmy(){
+                int probability;
+                probability = random.nextInt(100);
+                if((cycle % 5  == 0) && (probability >= 25) && (probability <= 75)){
+                    return random.nextInt(Constants.BATTLEFIELD_Y_DIM);
+                }
+                else if((cycle % 5 != 0) && (probability >= 2) && (probability <= 6)){
+                    return random.nextInt(Constants.BATTLEFIELD_Y_DIM);
+                }
+                else{
+                    return Constants.BATTLEFIELD_Y_DIM;
+                }
+            }
+
             public void cycle_routine(){
+                int newEmpireshipPosition = 9;
                 this.moveEmpireShips();
                 this.cycle_interaction();
                 this.cycle++;
+                newEmpireshipPosition = this.generateEmpireArmy();
+                if(newEmpireshipPosition < 8){
+                    this.insertNewEmpireShip(newEmpireshipPosition);
+                }
             }
             
             

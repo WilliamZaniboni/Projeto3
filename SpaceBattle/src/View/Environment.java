@@ -480,10 +480,10 @@ public class Environment extends javax.swing.JFrame implements Observer {
                 
                 ImageIcon referencia4 = new ImageIcon("img/eticone.png"); //Inimigo
                 Image nave4 = referencia4.getImage();
-
-                 if(fightController.getMatrixpreenchida(fightController.getRebels().get(i).getX(),fightController.getRebels().get(i).getY())==4){
-                    g.drawImage(nave4, squareWidth * fightController.getRebels().get(i).getX() + 327,
-                        squareHeight * fightController.getRebels().get(i).getY() + 87, null);
+                
+                 if(fightController.getMatrixpreenchida(fightController.getEmpire().get(i).getX(),fightController.getEmpire().get(i).getY())==4){
+                    g.drawImage(nave4, squareWidth * fightController.getEmpire().get(i).getX() + 327,
+                        squareHeight * fightController.getEmpire().get(i).getY() + 87, null);
                 }
                  
             }

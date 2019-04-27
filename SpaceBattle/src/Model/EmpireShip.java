@@ -2,7 +2,7 @@ package Model;
 
 public class EmpireShip extends SpaceIcon {
     public EmpireShip(int y_position){
-        super(16, y_position, Constants.EMPIRESHIP_LIFE);
+        super((Constants.BATTLEFIELD_X_DIM-1), y_position, Constants.EMPIRESHIP_LIFE);
     }
 
     @Override
@@ -22,19 +22,26 @@ public class EmpireShip extends SpaceIcon {
 
         empire_ship_attack_matrix = new int[Constants.BATTLEFIELD_X_DIM][Constants.BATTLEFIELD_Y_DIM];
 
-        if(moveMatrix[this.getX()-1][this.getY()] == 1){
-            empire_ship_attack_matrix[this.getX()-1][this.getY()] = Constants.EMPIRESHIP_ATTACK;
+        if(this.getX() - 1 > 0){
+            if(moveMatrix[this.getX()-1][this.getY()] == 1){
+                empire_ship_attack_matrix[this.getX()-1][this.getY()] = Constants.EMPIRESHIP_ATTACK;
+            }
         }
-        if(moveMatrix[this.getX()-2][this.getY()] == 1){
-            empire_ship_attack_matrix[this.getX()-2][this.getY()] = Constants.EMPIRESHIP_ATTACK;
+        if(this.getX() - 2 > 0){
+            if(moveMatrix[this.getX()-2][this.getY()] == 1){
+                empire_ship_attack_matrix[this.getX()-2][this.getY()] = Constants.EMPIRESHIP_ATTACK;
+            }
         }
-        if(moveMatrix[this.getX()-2][this.getY()-1] == 1){
-            empire_ship_attack_matrix[this.getX()-2][this.getY()-1] = Constants.EMPIRESHIP_ATTACK;
+        if((this.getX() - 2 > 0) && (this.getY() - 1 > 0)){
+            if(moveMatrix[this.getX()-2][this.getY()-1] == 1){
+                empire_ship_attack_matrix[this.getX()-2][this.getY()-1] = Constants.EMPIRESHIP_ATTACK;
+            }
         }
-        if(moveMatrix[this.getX()-2][this.getY()+1] == 1){
-            empire_ship_attack_matrix[this.getX()-2][this.getY()+1] = Constants.EMPIRESHIP_ATTACK;
+        if((this.getX() - 2 > 0) && (this.getY() + 1 < Constants.BATTLEFIELD_Y_DIM)){
+            if(moveMatrix[this.getX()-2][this.getY()+1] == 1){
+                empire_ship_attack_matrix[this.getX()-2][this.getY()+1] = Constants.EMPIRESHIP_ATTACK;
+            }
         }
-
         return empire_ship_attack_matrix;
     }
 }

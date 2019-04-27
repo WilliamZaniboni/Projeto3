@@ -17,19 +17,28 @@ public class RebelStarship extends SpaceIcon{
 
         rebel_starship_attack_matrix = new int[Constants.BATTLEFIELD_X_DIM][Constants.BATTLEFIELD_Y_DIM];
 
-        if(moveMatrix[this.getX()+1][this.getY()] == 1){
-            rebel_starship_attack_matrix[this.getX()+1][this.getY()] = Constants.STARSHIP_ATTACK;
+        //Primeira coluna
+        if(this.getX() + 1 < Constants.BATTLEFIELD_X_DIM){
+            if(moveMatrix[this.getX()+1][this.getY()] == 1){
+                rebel_starship_attack_matrix[this.getX()+1][this.getY()] = Constants.STARSHIP_ATTACK;
+            }
         }
-        if(moveMatrix[this.getX()+2][this.getY()] == 1){
-            rebel_starship_attack_matrix[this.getX()+2][this.getY()] = Constants.STARSHIP_ATTACK;
+        //Segunda coluna
+        if(this.getX() + 2 < Constants.BATTLEFIELD_X_DIM){
+            if(moveMatrix[this.getX()+2][this.getY()] == 1){
+                rebel_starship_attack_matrix[this.getX()+2][this.getY()] = Constants.STARSHIP_ATTACK;
+            }
         }
-        if(moveMatrix[this.getX()+2][this.getY()-1] == 1){
-            rebel_starship_attack_matrix[this.getX()+2][this.getY()-1] = Constants.STARSHIP_ATTACK;
+        if((this.getX() + 2 < Constants.BATTLEFIELD_X_DIM) && (this.getY() - 1 > 0)){
+            if(moveMatrix[this.getX()+2][this.getY()-1] == 1){
+                rebel_starship_attack_matrix[this.getX()+2][this.getY()-1] = Constants.STARSHIP_ATTACK;
+            }
         }
-        if(moveMatrix[this.getX()+2][this.getY()+1] == 1){
-            rebel_starship_attack_matrix[this.getX()+2][this.getY()+1] = Constants.STARSHIP_ATTACK;
+        if((this.getX() + 2 < Constants.BATTLEFIELD_X_DIM) && (this.getY() + 1 < Constants.BATTLEFIELD_Y_DIM)){
+            if(moveMatrix[this.getX()+2][this.getY()+1] == 1){
+                rebel_starship_attack_matrix[this.getX()+2][this.getY()+1] = Constants.STARSHIP_ATTACK;
+            }
         }
-
         return rebel_starship_attack_matrix;
     }
 }
