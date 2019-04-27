@@ -154,9 +154,16 @@ public class FightController implements Observer {
         //Métodos de operação durante um ciclo -------------------------------------------------------------------------
             public void moveEmpireShips(){
                 for(int i = 0; i < empire_number; i++){
+                    
+                    battlefield.setOccupiedMatrix(empire.get(i).getX(),empire.get(i).getY(), 0);
+                    
                     empire.get(i).Move(battlefield);
+                    
+                    battlefield.setOccupiedMatrix(empire.get(i).getX(),empire.get(i).getY(), 4);
+                    
                 }
             }
+            
 
             public boolean isAlive(SpaceIcon fighter ,int[][] attackMatrix){
                 fighter.setLife_value(fighter.getLife_value()-attackMatrix[fighter.getX()][fighter.getY()]);
