@@ -174,8 +174,7 @@ public class EnvironmentController implements MouseListener, MouseMotionListener
             
             if(ae.getSource() == environment.getbutton_next_cycle()){
                 
-                fightController.cycle_routine();
-                System.out.println(""+fightController.getCycle());
+                fightController.cycle_routine(); 
                 environment.getjLabel9().setText(""+fightController.getCycle()+"º");
                
                

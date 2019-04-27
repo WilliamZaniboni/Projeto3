@@ -2,6 +2,7 @@ package View;
 
 import Controller.EnvironmentController;
 import Controller.FightController;
+import Model.Constants;
 import Model.UpdateClass;
 
 import java.awt.BasicStroke;
@@ -126,12 +127,12 @@ public class Environment extends javax.swing.JFrame implements Observer {
             
             jLabel1.add(jLabel8); //quantidade de moeda
             jLabel8.setBounds(760, 113, 100, 40);
-            jLabel8.setText("100 ");
+            jLabel8.setText(""+Constants.GOLD_INIT);
             
          //Label para informar o ciclo
          
             jLabel1.add(jLabel9); //label para informar o ciclo
-            jLabel9.setBounds(35, 5, 60, 40);
+            jLabel9.setBounds(35, 5, 80, 40);
             jLabel9.setText("0º");
             
             jLabel1.add(jLabel10); //label para informar o ciclo
@@ -334,88 +335,81 @@ public class Environment extends javax.swing.JFrame implements Observer {
                     
                 case 2: //StarShip
                     
-                    for(int i=0; i<8; i++){
+                    g.setColor(Color.red);
+                    g.setStroke(new BasicStroke(2));
+                    g.drawRect(qx * squareWidth+327, qy * squareHeight+87, squareWidth, squareHeight); 
+                    
+                    int c = 2;
+                    
+                    for(int i=2;i>-1;i--){
                         
-                        if((qy * squareHeight + 87-54*i)>=87){
+                         if(qx * squareWidth+327+i*54<=1135){
+                       
                             g.setColor(Color.red);
                             g.setStroke(new BasicStroke(2));
-                            g.drawRect(qx * squareWidth+327, qy * squareHeight+87-54*i, squareWidth, squareHeight);
-                            g.setColor(Color.BLACK);
-                        }
-                         
-                    }      
-                    
-                    for(int i=0; i<8; i++){
-                        
-                        if((qy * squareHeight + 87+54*i)<=517){
-                            g.setColor(Color.red);
-                            g.setStroke(new BasicStroke(2));
-                            g.drawRect(qx * squareWidth+327, qy * squareHeight+87+54*i, squareWidth, squareHeight);
-                            g.setColor(Color.BLACK);
-                        }
-                         
-                    }    
-                    
-                    
-                    for(int i=0; i<15; i++){
-                        if((qx * squareWidth+327+54*i)<=1135){
-                            g.setColor(Color.red);
-                            g.setStroke(new BasicStroke(2));
-                            g.drawRect(qx * squareWidth+327+54*i, qy * squareHeight+87, squareWidth, squareHeight);
-                            g.setColor(Color.BLACK);
+                            
+                            for(int k=0; k<c;k++){
+                              if(qy * squareHeight+87+54*k<=517){  
+                                g.drawRect(qx * squareWidth+327+i*54, qy * squareHeight+87+54*k, squareWidth, squareHeight);
+                              } 
+                           }
+                            for(int k=0; k<c;k++){
+                              if((qy * squareHeight+87-54*k)>=87){  
+                                g.drawRect(qx * squareWidth+327+i*54, qy * squareHeight+87-54*k, squareWidth, squareHeight);
+                              }  
+                           }
+                           
                          }
-                     }
+                          c--;
+                            
+                    }      
                     
                     break;
                     
                 case 3: //StarBomb
 
-                    int r=2;
-                    int constante =0;
-        
-                    for(int j=r;j>0;j--){
-            
-                        if((qx * squareWidth+327+54*j<=1136)){
-            
-                            for(int k = 0; k<constante+1; k++){
-                                 if((qy * squareHeight+87+k*54<=517)){
-                                   g.setColor(Color.red);
-                                   g.setStroke(new BasicStroke(2));
-                                   g.drawRect(qx * squareWidth+327+54*j, qy * squareHeight+87+k*54, squareWidth, squareHeight);
-                                   g.setColor(Color.BLACK);
-                                  }
-          
-                                 if((qy * squareHeight+87-k*54>=87)){
-                                  g.setColor(Color.red);
-                                  g.setStroke(new BasicStroke(2));
-                                  g.drawRect(qx * squareWidth+327+54*j, qy * squareHeight+87-k*54, squareWidth, squareHeight);
-                                   g.setColor(Color.BLACK);
-                                 }
-                            }
-           
-                           }
-        
-                             constante = constante+1;
-        
-                     }
+                    g.setColor(Color.red);
+                    g.setStroke(new BasicStroke(2));
+                    g.drawRect(qx * squareWidth+327, qy * squareHeight+87, squareWidth, squareHeight); 
                     
+                    int c2 = 3;
+                    
+                    for(int i=3;i>-1;i--){
+                        
+                         if(qx * squareWidth+327+i*54<=1135){
+                       
+                            g.setColor(Color.red);
+                            g.setStroke(new BasicStroke(2));
+                            
+                            for(int k=0; k<c2;k++){
+                              if(qy * squareHeight+87+54*k<=517){  
+                                g.drawRect(qx * squareWidth+327+i*54, qy * squareHeight+87+54*k, squareWidth, squareHeight);
+                              } 
+                           }
+                            for(int k=0; k<c2;k++){
+                              if((qy * squareHeight+87-54*k)>=87){  
+                                g.drawRect(qx * squareWidth+327+i*54, qy * squareHeight+87-54*k, squareWidth, squareHeight);
+                              }  
+                           }
+                           
+                         }
+                          c2--;
+                            
+                    }      
                     
            
                     break;
                     
                 case 4: //Caso seja um inimigo
-                    //et1 //ataques horizontais apenas para a esquerda (linha 202 até 211)
-            /*
-            for(int i=0; i<15; i++){
-            if((qx * squareWidth+327-54*i)>=327){
-            g.setColor(Color.red);
-            g.setStroke(new BasicStroke(2));
-            g.drawRect(qx * squareWidth+327-54*i, qy * squareHeight+87, squareWidth, squareHeight);
-            g.setColor(Color.BLACK);
-            }
-            }
-             */
-                    
+                        for(int i=0; i<15; i++){
+                             if((qx * squareWidth+327-54*i)>=327){
+                                g.setColor(Color.red);
+                                g.setStroke(new BasicStroke(2));
+                                g.drawRect(qx * squareWidth+327-54*i, qy * squareHeight+87, squareWidth, squareHeight);
+                                g.setColor(Color.BLACK);
+                             }
+                         }
+             
                 default:
                     break;
             }
@@ -451,16 +445,16 @@ public class Environment extends javax.swing.JFrame implements Observer {
         }
         
         
-        // desenha os SpaceIcons no battlefield
+        // desenha os SpaceIcons no battlefield aliadas
             for(int i = 0; i < fightController.getRebels_number(); i++){
                 
-                ImageIcon referencia1 = new ImageIcon("img/nave1icone.png");
+                ImageIcon referencia1 = new ImageIcon("img/nave1icone.png"); //SpaceTower
                 Image nave1 = referencia1.getImage();
                 
-                ImageIcon referencia2 = new ImageIcon("img/nave2icone.png");
+                ImageIcon referencia2 = new ImageIcon("img/nave2icone.png"); //StarShip
                 Image nave2 = referencia2.getImage();
                 
-                ImageIcon referencia3 = new ImageIcon("img/nave3icone.png");
+                ImageIcon referencia3 = new ImageIcon("img/nave3icone.png"); //StarBomb
                 Image nave3 = referencia3.getImage();
                 
                 
@@ -479,14 +473,19 @@ public class Environment extends javax.swing.JFrame implements Observer {
                         squareHeight * fightController.getRebels().get(i).getY() + 87, null);
                 }
                 
-                
             }
+           
+            // desenha os SpaceIcons no battlefield inimigas
             for(int i = 0; i < fightController.getEmpire_number(); i++){
-                ImageIcon referencia2 = new ImageIcon("img/nave2icone.png");
-                Image nave2 = referencia2.getImage();
+                
+                ImageIcon referencia4 = new ImageIcon("img/eticone.png"); //Inimigo
+                Image nave4 = referencia4.getImage();
 
-                g.drawImage(nave2, squareWidth * fightController.getEmpire().get(i).getX() + 327,
-                        squareHeight * fightController.getEmpire().get(i).getY() + 87, this);
+                 if(fightController.getMatrixpreenchida(fightController.getRebels().get(i).getX(),fightController.getRebels().get(i).getY())==4){
+                    g.drawImage(nave4, squareWidth * fightController.getRebels().get(i).getX() + 327,
+                        squareHeight * fightController.getRebels().get(i).getY() + 87, null);
+                }
+                 
             }
 
         
@@ -576,7 +575,7 @@ public class Environment extends javax.swing.JFrame implements Observer {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel9.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 35)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel10.setBackground(new java.awt.Color(0, 0, 0));

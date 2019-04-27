@@ -14,7 +14,7 @@ public class Player {
     private int gold;
     
     public Player(){
-    this.gold = 100;
+    this.gold = Constants.GOLD_INIT;
     }
    
     

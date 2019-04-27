@@ -1,7 +1,10 @@
 package Model;
 
 public class Constants {
-
+    
+    //Gold inicial
+    public static final int GOLD_INIT = 1000;
+    
     //Battlefield Constants --------------------------------------------------------------------------------------------
     public static final int BATTLEFIELD_X_DIM  = 15;
     public static final int BATTLEFIELD_Y_DIM  = 8;
